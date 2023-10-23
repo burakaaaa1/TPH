@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <table border="1">
+        <tr>
+            <td colspan="2">Taksi-Tipi</td>
+            <td colspan="2">Sarı</td>
+           
+            <td colspan="2">Turkuaz</td>
+            <td colspan="2">Siyah</td>
+            
+        </tr>
+        <tr>
+            <td colspan="2">Açılış Ve Km</td>
+            <td>Açılış</td>
+            <td>Km Fiyatı</td>
+            <td>Açılış </td>
+            <td>Km Fiyatı</td>
+            <td>Açılış</td>
+            <td>Km Fiyatı</td>
+        </tr>
+        <tr>
+            
+            <td colspan="2">Ankara </td>
+            
+            <td>18,00&</td>
+            <td>15,00&</td>
+            <td>30,00%</td>
+            <td>25,00%</td>
+            <td>50,00%</td>
+            <td>45,00&</td>
+            
+        </tr>
+        <tr>
+            <td colspan="2">İstanbul </td>
+            
+            <td>25,00&</td>
+            <td>23,00&</td>
+            <td>40,00%</td>
+            <td>38,00%</td>
+            <td>60,00%</td>
+            <td>55,00&</td> 
+        </tr>
+        <tr>
+            <td colspan="2">İstanbul </td>
+            
+            <td>22,00&</td>
+            <td>20,00&</td>
+            <td>35,00%</td>
+            <td>32,00%</td>
+            <td>55,00%</td>
+            <td>50,00&</td> 
+        </tr>
+     </table>
+     <h1>Taksi Ücret Hesaplama</h1>
+    <label for="sehirSelect">Şehir Seçin:</label>
+    <select id="sehirSelect">
+        <option value="istanbul">İstanbul</option>
+        <option value="ankara">Ankara</option>
+        <option value="izmir">İzmir</option>
+    </select>
+    <label for="taksiSelect">Taksi Rengi Seçiniz:</label>
+    <select id="taksiSelect">
+        <option value="taksi1">Sarı</option>
+        <option value="taksi2">Turkuaz</option>
+        <option value="taksi3">Siyah</option>
+    </select>
+    <input type="number" id="kmInput" placeholder="Kaç Kilometre Gittiniz?">
+    <button onclick="hesaplaUcret()">Ücreti Hesapla</button>
+    <p id="sonuc"></p>
+
+    <script>
+function hesaplaUcret() {
+            let sehir = document.getElementById("sehirSelect").value;
+            let  taksi = document.getElementById("taksiSelect").value;
+            let  km = parseFloat(document.getElementById("kmInput").value);
+
+            // tanımlama
+            let fiyatlar = {
+                istanbul: {
+                    taksi1: { acilisFiyati: 5, kmFiyati: 2 },
+                    taksi2: { acilisFiyati: 6, kmFiyati: 2.5 },
+                    taksi3: { acilisFiyati: 4, kmFiyati: 1.8 },
+                },
+                ankara: {
+                    taksi1: { acilisFiyati: 4, kmFiyati: 2.2 },
+                    taksi2: { acilisFiyati: 5, kmFiyati: 2.7 },
+                    taksi3: { acilisFiyati: 3.5, kmFiyati: 2 },
+                },
+                izmir: {
+                    taksi1: { acilisFiyati: 4.5, kmFiyati: 2.3 },
+                    taksi2: { acilisFiyati: 5.5, kmFiyati: 3 },
+                    taksi3: { acilisFiyati: 4, kmFiyati: 2.2 },
+                },
+            };
+
+            let acilisFiyati = fiyatlar[sehir][taksi].acilisFiyati;
+            let kmFiyati = fiyatlar[sehir][taksi].kmFiyati;
+
+            let ucret = acilisFiyati + (km * kmFiyati);
+            document.getElementById("sonuc").innerHTML = "Toplam Ücret: " + ucret + " TL";
+        }
+    </script>
+</body>
+</html>
